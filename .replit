@@ -1,11 +1,11 @@
-modules = ["php-8.2", "web"]
-run = "node index.js"
+
+modules = ["nodejs-20", "php-8.2", "web"]
 
 [nix]
-channel = "stable-25_05"
+channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "node index.js"]
+run = ["sh", "-c", "cd angular-frontend && npm run build"]
 
 [workflows]
 runButton = "Build Angular for Production"
@@ -17,7 +17,7 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd angular-frontend && npm install && ng serve --host 0.0.0.0 --port 4200"
+args = "cd angular-frontend && npm install && npm start"
 
 [[workflows.workflow]]
 name = "Build Angular for Production"
@@ -27,3 +27,12 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd angular-frontend && npm install && npm run build"
+
+[[workflows.workflow]]
+name = "PHP Dev Server"
+author = 46322664
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd php-api && php -S 0.0.0.0:8000"

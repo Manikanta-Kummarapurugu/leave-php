@@ -2,26 +2,51 @@
 <?php
 include_once '../../config/database.php';
 
-header('Content-Type: application/json');
-
 $database = new Database();
 $db = $database->getConnection();
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $query = "SELECT EMPID, EMPNAME, EMPPOSITION, USERNAME, ACCSTATUS, EMPSEX, COMPANY, DEPARTMENT, EMPLOYID, AVELEAVE FROM tblemployee ORDER BY EMPNAME";
+try {
+    $query = "SELECT e.EMPID, e.FNAME, e.LNAME, e.MNAME, e.ADDRESS, e.BIRTHDATE, 
+                     e.BIRTHPLACE, e.AGE, e.SEX, e.CIVILSTATUS, e.TELNO, e.EMP_EMAIL,
+                     e.POSITION, e.STARTDATE, e.EMPPHOTO, e.COMPANYID, e.DEPARTMENTID,
+                     c.COMPANYNAME, d.DEPARTMENT, d.DESCRIPTION as DEPT_DESC
+              FROM tblemployees e 
+              LEFT JOIN tblcompany c ON e.COMPANYID = c.COMPANYID 
+              LEFT JOIN tbldepartment d ON e.DEPARTMENTID = d.DEPARTMENTID 
+              ORDER BY e.FNAME, e.LNAME";
+    
     $stmt = $db->prepare($query);
     $stmt->execute();
     
     $employees = array();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $employees[] = $row;
+        $employees[] = array(
+            "id" => $row['EMPID'],
+            "firstName" => $row['FNAME'],
+            "lastName" => $row['LNAME'],
+            "middleName" => $row['MNAME'],
+            "address" => $row['ADDRESS'],
+            "birthDate" => $row['BIRTHDATE'],
+            "birthPlace" => $row['BIRTHPLACE'],
+            "age" => $row['AGE'],
+            "sex" => $row['SEX'],
+            "civilStatus" => $row['CIVILSTATUS'],
+            "telNo" => $row['TELNO'],
+            "email" => $row['EMP_EMAIL'],
+            "position" => $row['POSITION'],
+            "startDate" => $row['STARTDATE'],
+            "photo" => $row['EMPPHOTO'],
+            "companyId" => $row['COMPANYID'],
+            "departmentId" => $row['DEPARTMENTID'],
+            "companyName" => $row['COMPANYNAME'],
+            "departmentName" => $row['DEPARTMENT'],
+            "departmentDescription" => $row['DEPT_DESC']
+        );
     }
     
-    echo json_encode($employees);
-} else {
-    echo json_encode([
-        "success" => false,
-        "message" => "Only GET method allowed"
-    ]);
+    sendResponse(true, "Employees retrieved successfully", $employees);
+    
+} catch (Exception $e) {
+    sendResponse(false, "Error retrieving employees: " . $e->getMessage());
 }
 ?>
