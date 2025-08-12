@@ -1,0 +1,49 @@
+
+<div class="container-fluid">
+  <div class="page-header">
+    <h1 class="h3 mb-0 text-gray-800">Leave Type Management</h1>
+    <button class="btn btn-primary" (click)="addLeaveType()">
+      <i class="fa fa-plus"></i> Add Leave Type
+    </button>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Leave Types</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Leave Type</th>
+              <th>Description</th>
+              <th>Max Days</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let leaveType of leaveTypes">
+              <td>{{ leaveType.id }}</td>
+              <td>{{ leaveType.name }}</td>
+              <td>{{ leaveType.description }}</td>
+              <td>{{ leaveType.max_days }}</td>
+              <td>
+                <button class="btn btn-warning btn-sm" (click)="editLeaveType(leaveType)">
+                  <i class="fa fa-edit"></i> Edit
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="deleteLeaveType(leaveType.id)">
+                  <i class="fa fa-trash"></i> Delete
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="leaveTypes.length === 0">
+              <td colspan="5" class="text-center">No leave types found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
