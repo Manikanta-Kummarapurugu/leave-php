@@ -8,7 +8,7 @@ channel = "stable-25_05"
 run = ["sh", "-c", "node index.js"]
 
 [workflows]
-runButton = "Angular Dev Server"
+runButton = "Build Angular for Production"
 
 [[workflows.workflow]]
 name = "Angular Dev Server"
@@ -18,3 +18,12 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd angular-frontend && npm install && ng serve --host 0.0.0.0 --port 4200"
+
+[[workflows.workflow]]
+name = "Build Angular for Production"
+author = 46322664
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd angular-frontend && npm install && npm run build"

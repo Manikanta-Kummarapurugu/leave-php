@@ -1,14 +1,14 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { environment } from '../../environments/environment'; // Assuming environment file is here
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private apiUrl = 'http://localhost:5000/api/employees';
+  private apiUrl = environment.apiUrl; // Use environment variable
 
   constructor(private http: HttpClient) {}
 

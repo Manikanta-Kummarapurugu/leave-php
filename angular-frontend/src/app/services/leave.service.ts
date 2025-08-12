@@ -1,15 +1,15 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Leave, LeaveType } from '../models/leave.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LeaveService {
-  private apiUrl = 'http://localhost:5000/api/leaves';
-  private leaveTypeApiUrl = 'http://localhost:5000/api/leave-types';
+  private apiUrl = environment.apiUrl;
+  private leaveTypeApiUrl = environment.leaveTypeApiUrl;
 
   constructor(private http: HttpClient) {}
 

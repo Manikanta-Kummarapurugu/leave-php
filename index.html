@@ -308,3 +308,54 @@
 </body>
 
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leave Management System</h1>
+        <p>Welcome to the Leave Management System</p>
+        
+        <h2>Available Sections:</h2>
+        <a href="angular-frontend/dist/index.html" class="btn">Angular Frontend</a>
+        <a href="php-api/" class="btn">PHP API</a>
+        
+        <h2>API Endpoints:</h2>
+        <ul style="text-align: left;">
+            <li><strong>Authentication:</strong> php-api/api/auth/login.php</li>
+            <li><strong>Employees:</strong> php-api/api/employees/</li>
+            <li><strong>Leaves:</strong> php-api/api/leaves/</li>
+            <li><strong>Companies:</strong> php-api/api/companies/</li>
+            <li><strong>Departments:</strong> php-api/api/departments/</li>
+            <li><strong>Leave Types:</strong> php-api/api/leave-types/</li>
+        </ul>
+    </div>
+</body>
+</html>
