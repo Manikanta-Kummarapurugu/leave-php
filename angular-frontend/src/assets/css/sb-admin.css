@@ -1,0 +1,73 @@
+
+/* Copy the sb-admin.css content from the original project to assets */
+/* This would contain all the styling from the original project */
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.sidebar {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar .nav-link:hover {
+    color: white;
+}
+
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    border: none;
+}
+
+.btn-primary {
+    background-color: #4e73df;
+    border-color: #4e73df;
+}
+
+.btn-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2e59d9;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    background-color: #f8f9fc;
+}
+
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+
+.border-left-success {
+    border-left: 0.25rem solid #1cc88a !important;
+}
+
+.border-left-warning {
+    border-left: 0.25rem solid #f6c23e !important;
+}
+
+.border-left-danger {
+    border-left: 0.25rem solid #e74a3b !important;
+}
+
+.text-primary {
+    color: #4e73df !important;
+}
+
+.text-gray-800 {
+    color: #5a5c69 !important;
+}
+
+.text-gray-300 {
+    color: #dddfeb !important;
+}
+
+.shadow {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+}
