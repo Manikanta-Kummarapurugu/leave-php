@@ -1,0 +1,14 @@
+
+<div id="wrapper" *ngIf="authService.isAuthenticated(); else loginTemplate">
+  <app-sidebar></app-sidebar>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <app-navbar></app-navbar>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<ng-template #loginTemplate>
+  <app-login></app-login>
+</ng-template>

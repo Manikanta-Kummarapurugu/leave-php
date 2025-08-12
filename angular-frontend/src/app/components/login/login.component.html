@@ -1,0 +1,79 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header">
+          <h3 class="text-center font-weight-light my-4">Leave Management System</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label class="small mb-1" for="inputEmailAddress">Employee ID</label>
+              <input 
+                class="form-control py-4" 
+                id="inputEmailAddress" 
+                type="text" 
+                placeholder="Enter employee ID" 
+                formControlName="employeeId"
+                [class.is-invalid]="loginForm.get('employeeId')?.invalid && loginForm.get('employeeId')?.touched" />
+              <div class="invalid-feedback" *ngIf="loginForm.get('employeeId')?.invalid && loginForm.get('employeeId')?.touched">
+                Employee ID is required
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="small mb-1" for="inputPassword">Password</label>
+              <input 
+                class="form-control py-4" 
+                id="inputPassword" 
+                type="password" 
+                placeholder="Enter password" 
+                formControlName="password"
+                [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" />
+              <div class="invalid-feedback" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                Password is required
+              </div>
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+              <a class="small" href="#" (click)="$event.preventDefault(); showForgotPassword = true">Forgot Password?</a>
+              <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                Login
+              </button>
+            </div>
+          </form>
+          
+          <!-- Error Alert -->
+          <div class="alert alert-danger mt-3" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+          
+          <!-- Forgot Password Modal -->
+          <div class="modal fade" [class.show]="showForgotPassword" [style.display]="showForgotPassword ? 'block' : 'none'" *ngIf="showForgotPassword">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Reset Password</h5>
+                  <button type="button" class="btn-close" (click)="showForgotPassword = false"></button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="resetForm" (ngSubmit)="onResetPassword()">
+                    <div class="mb-3">
+                      <label for="resetEmployeeId" class="form-label">Employee ID</label>
+                      <input type="text" class="form-control" id="resetEmployeeId" formControlName="employeeId" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="resetEmail" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="resetEmail" formControlName="email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="resetForm.invalid">Reset Password</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

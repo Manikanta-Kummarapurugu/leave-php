@@ -1,0 +1,97 @@
+
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ isEditMode ? 'Edit' : 'Add' }} Employee</h1>
+  </div>
+  
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Employee Form</h6>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="employeeId">Employee ID</label>
+              <input type="text" class="form-control" id="employeeId" 
+                     formControlName="employeeId" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="firstname">First Name</label>
+              <input type="text" class="form-control" id="firstname" 
+                     formControlName="firstname" required>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="lastname">Last Name</label>
+              <input type="text" class="form-control" id="lastname" 
+                     formControlName="lastname" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" 
+                     formControlName="email" required>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="position">Position</label>
+              <input type="text" class="form-control" id="position" 
+                     formControlName="position" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="departmentId">Department</label>
+              <select class="form-control" id="departmentId" formControlName="departmentId" required>
+                <option value="">Select Department</option>
+                <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="companyId">Company</label>
+              <select class="form-control" id="companyId" formControlName="companyId" required>
+                <option value="">Select Company</option>
+                <option *ngFor="let company of companies" [value]="company.id">{{ company.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="!isEditMode">
+            <div class="form-group mb-3">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" 
+                     formControlName="password" required>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid || isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+            {{ isEditMode ? 'Update' : 'Create' }} Employee
+          </button>
+          <button type="button" class="btn btn-secondary ms-2" routerLink="/employees">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+
+#wrapper {
+  display: flex;
+}
+
+#content-wrapper {
+  background-color: #f8f9fc;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#content {
+  flex: 1 0 auto;
+  padding: 1.5rem;
+}
+
+.sidebar {
+  width: 224px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #29323c 10%, #485563 100%);
+}

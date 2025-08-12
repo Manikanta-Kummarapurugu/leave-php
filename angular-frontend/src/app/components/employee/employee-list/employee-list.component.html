@@ -1,0 +1,50 @@
+
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Employees</h1>
+    <button class="btn btn-primary" routerLink="/employees/new">
+      <i class="fas fa-plus fa-sm text-white-50"></i> Add Employee
+    </button>
+  </div>
+  
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Employee ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Position</th>
+              <th>Department</th>
+              <th>Company</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employees">
+              <td>{{ employee.employeeId }}</td>
+              <td>{{ employee.firstname }} {{ employee.lastname }}</td>
+              <td>{{ employee.email }}</td>
+              <td>{{ employee.position }}</td>
+              <td>{{ employee.departmentName }}</td>
+              <td>{{ employee.companyName }}</td>
+              <td>
+                <button class="btn btn-sm btn-info me-1" [routerLink]="['/employees/edit', employee.id]">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteEmployee(employee.id)">
+                  <i class="fas fa-trash"></i> Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

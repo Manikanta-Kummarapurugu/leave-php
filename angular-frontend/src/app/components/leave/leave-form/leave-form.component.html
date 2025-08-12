@@ -1,0 +1,67 @@
+
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ isEditMode ? 'Edit' : 'Apply for' }} Leave</h1>
+  </div>
+  
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Leave Application Form</h6>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="leaveType">Leave Type</label>
+              <select class="form-control" id="leaveType" formControlName="leaveTypeId" required>
+                <option value="">Select Leave Type</option>
+                <option *ngFor="let type of leaveTypes" [value]="type.id">{{ type.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="numberOfDays">Number of Days</label>
+              <input type="number" class="form-control" id="numberOfDays" 
+                     formControlName="numberOfDays" min="1" required>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="startDate">Start Date</label>
+              <input type="date" class="form-control" id="startDate" 
+                     formControlName="startDate" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="endDate">End Date</label>
+              <input type="date" class="form-control" id="endDate" 
+                     formControlName="endDate" required>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group mb-3">
+          <label for="reason">Reason</label>
+          <textarea class="form-control" id="reason" rows="4" 
+                    formControlName="reason" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="leaveForm.invalid || isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+            {{ isEditMode ? 'Update' : 'Submit' }} Application
+          </button>
+          <button type="button" class="btn btn-secondary ms-2" routerLink="/leaves">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Leave Applications</h1>
+    <button class="btn btn-primary" routerLink="/leaves/new">
+      <i class="fas fa-plus fa-sm text-white-50"></i> Apply for Leave
+    </button>
+  </div>
+  
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Leave Applications List</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Leave Type</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Days</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th>Applied Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let leave of leaves">
+              <td>{{ leave.employeeName }}</td>
+              <td>{{ leave.leaveTypeName }}</td>
+              <td>{{ leave.startDate | date }}</td>
+              <td>{{ leave.endDate | date }}</td>
+              <td>{{ leave.numberOfDays }}</td>
+              <td>{{ leave.reason }}</td>
+              <td>
+                <span class="badge" [class]="getStatusClass(leave.status)">
+                  {{ leave.status }}
+                </span>
+              </td>
+              <td>{{ leave.appliedDate | date }}</td>
+              <td>
+                <button class="btn btn-sm btn-success me-1" 
+                        *ngIf="canApprove(leave) && leave.status === 'Pending'"
+                        (click)="approveLeave(leave.id)">
+                  <i class="fas fa-check"></i> Approve
+                </button>
+                <button class="btn btn-sm btn-danger me-1" 
+                        *ngIf="canReject(leave) && leave.status === 'Pending'"
+                        (click)="rejectLeave(leave.id)">
+                  <i class="fas fa-times"></i> Reject
+                </button>
+                <button class="btn btn-sm btn-info" 
+                        *ngIf="canEdit(leave)"
+                        [routerLink]="['/leaves/edit', leave.id]">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

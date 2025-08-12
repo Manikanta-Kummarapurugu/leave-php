@@ -1,0 +1,44 @@
+
+<ul class="sidebar navbar-nav">
+  <li class="nav-item" [class.active]="isActive('/dashboard')">
+    <a class="nav-link" routerLink="/dashboard">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span>
+    </a>
+  </li>
+  
+  <li class="nav-item" [class.active]="isActive('/employees')" *ngIf="canAccess(['admin', 'hr'])">
+    <a class="nav-link" routerLink="/employees">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Employees</span>
+    </a>
+  </li>
+  
+  <li class="nav-item" [class.active]="isActive('/leaves')">
+    <a class="nav-link" routerLink="/leaves">
+      <i class="fas fa-fw fa-calendar-alt"></i>
+      <span>Leave Applications</span>
+    </a>
+  </li>
+  
+  <li class="nav-item" [class.active]="isActive('/companies')" *ngIf="canAccess(['admin'])">
+    <a class="nav-link" routerLink="/companies">
+      <i class="fas fa-fw fa-building"></i>
+      <span>Companies</span>
+    </a>
+  </li>
+  
+  <li class="nav-item" [class.active]="isActive('/departments')" *ngIf="canAccess(['admin', 'hr'])">
+    <a class="nav-link" routerLink="/departments">
+      <i class="fas fa-fw fa-sitemap"></i>
+      <span>Departments</span>
+    </a>
+  </li>
+  
+  <li class="nav-item" [class.active]="isActive('/leave-types')" *ngIf="canAccess(['admin', 'hr'])">
+    <a class="nav-link" routerLink="/leave-types">
+      <i class="fas fa-fw fa-list"></i>
+      <span>Leave Types</span>
+    </a>
+  </li>
+</ul>
