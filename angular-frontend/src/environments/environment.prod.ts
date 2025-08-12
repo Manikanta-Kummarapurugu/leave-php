@@ -1,5 +1,5 @@
-
 export const environment = {
   production: true,
-  apiUrl: 'https://yourdomain.com/php-api' // Replace with your iPage domain
+  apiUrl: 'https://your-domain.com/php-api/api/leaves',
+  leaveTypeApiUrl: 'https://your-domain.com/php-api/api/leave-types'
 };
